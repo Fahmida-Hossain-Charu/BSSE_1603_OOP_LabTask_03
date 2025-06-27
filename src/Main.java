@@ -16,7 +16,6 @@ public class Main {
             System.out.println("3. Deposit Money");
             System.out.println("4. Withdraw Money");
             System.out.println("5. Transfer Money");
-            System.out.println("6. Add Interest");
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
             choice = sc.nextInt();
@@ -48,11 +47,12 @@ public class Main {
                         }
                     }
 
-                    sc.nextLine();
+                    sc.nextLine(); // flush newline
                     System.out.print("Enter Deposit Premium Account Name: ");
                     String pname = sc.nextLine();
-
-                    premium = new DepositPremiumAccount(103, pname);
+                    System.out.print("Enter opening deposit (counts as first installment): ");
+                    double pBalance = sc.nextDouble();
+                    premium = new DepositPremiumAccount(103, pname, pBalance);
 
                     System.out.println(" All accounts created successfully.");
                     break;
@@ -137,24 +137,6 @@ public class Main {
                             System.out.println(" Invalid option.");
                     }
                     if (!success) System.out.println(" Transfer failed.");
-                    break;
-
-                case 6:
-                    System.out.println("\n--- Add Interest To ---");
-                    System.out.println("1. Savings");
-                    System.out.println("2. Deposit Premium");
-                    System.out.print("Choice: ");
-                    int iOpt = sc.nextInt();
-
-                    if (iOpt == 1 && savings != null) {
-                        savings.addInterest();
-                        System.out.println(" Interest added to Savings Account.");
-                    } else if (iOpt == 2 && premium != null) {
-                        premium.addInterest();
-                        System.out.println(" Interest added to Deposit Premium Account.");
-                    } else {
-                        System.out.println(" Invalid or missing account.");
-                    }
                     break;
 
                 case 0:
